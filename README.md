@@ -1,49 +1,24 @@
-# Extended Kalman Filter Project Starter Code
+# Extended Kalman Filter 
 Self-Driving Car Engineer Nanodegree Program
 
-In this project you will utilize a kalman filter to estimate the state of a moving object of interest with noisy lidar and radar measurements. Passing the project requires obtaining RMSE values that are lower than the tolerance outlined in the project rubric. 
+In this project I use a Kalman Filter to estimate the state of a moving object of interest with noisy lidar and redar measurements. To measure the accuracy of the positions and velocity predicted by the Kalman Filter, RMSE values between predictions and the ground truth included in the data is displayed. Final RMSE values are lower than the tolerance outlined in the [project rubric](https://review.udacity.com/#!/rubrics/748/view).
+
+
+
+## Installation and Build
 
 This project involves the Term 2 Simulator which can be downloaded [here](https://github.com/udacity/self-driving-car-sim/releases).
 
-This repository includes two files that can be used to set up and install [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) for either Linux or Mac systems. For windows you can use either Docker, VMware, or even [Windows 10 Bash on Ubuntu](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/) to install uWebSocketIO. Please see the uWebSocketIO Starter Guide page in the classroom within the EKF Project lesson for the required version and installation scripts.
+Once you clone this repo, it includes two files that can be used to set up and install [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) for either Linux or Mac systems. For windows you can use either Docker, VMware, or even [Windows 10 Bash on Ubuntu](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/) to install uWebSocketIO. 
 
 Once the install for uWebSocketIO is complete, the main program can be built and run by doing the following from the project top directory.
 
-1. mkdir build
-2. cd build
-3. cmake ..
-4. make
-5. ./ExtendedKF
+- Make a build directory: `mkdir build && cd build`
+- Compile: `cmake .. && make` 
+   * On windows, you may need to run: `cmake .. -G "Unix Makefiles" && make`
+- Run it: `./ExtendedKF `
 
-Tips for setting up your environment can be found in the classroom lesson for this project.
-
-Note that the programs that need to be written to accomplish the project are src/FusionEKF.cpp, src/FusionEKF.h, kalman_filter.cpp, kalman_filter.h, tools.cpp, and tools.h
-
-The program main.cpp has already been filled out, but feel free to modify it.
-
-Here is the main protocol that main.cpp uses for uWebSocketIO in communicating with the simulator.
-
-
-**INPUT**: values provided by the simulator to the c++ program
-
-["sensor_measurement"] => the measurement that the simulator observed (either lidar or radar)
-
-
-**OUTPUT**: values provided by the c++ program to the simulator
-
-["estimate_x"] <= kalman filter estimated position x
-
-["estimate_y"] <= kalman filter estimated position y
-
-["rmse_x"]
-
-["rmse_y"]
-
-["rmse_vx"]
-
-["rmse_vy"]
-
----
+Refer to the Udacity project repository for more detail intalation instructions.
 
 ## Other Important Dependencies
 
@@ -58,13 +33,6 @@ Here is the main protocol that main.cpp uses for uWebSocketIO in communicating w
   * Mac: same deal as make - [install Xcode command line tools](https://developer.apple.com/xcode/features/)
   * Windows: recommend using [MinGW](http://www.mingw.org/)
 
-## Basic Build Instructions
-
-1. Clone this repo.
-2. Make a build directory: `mkdir build && cd build`
-3. Compile: `cmake .. && make` 
-   * On windows, you may need to run: `cmake .. -G "Unix Makefiles" && make`
-4. Run it: `./ExtendedKF `
 
 ## Editor Settings
 
@@ -96,15 +64,6 @@ More information is only accessible by people who are already enrolled in Term 2
 of CarND. If you are enrolled, see the Project Resources page in the classroom
 for instructions and the project rubric.
 
-## Hints and Tips!
-
-* You don't have to follow this directory structure, but if you do, your work
-  will span all of the .cpp files here. Keep an eye out for TODOs.
-* Students have reported rapid expansion of log files when using the term 2 simulator.  This appears to be associated with not being connected to uWebSockets.  If this does occur,  please make sure you are conneted to uWebSockets. The following workaround may also be effective at preventing large log files.
-
-    + create an empty log file
-    + remove write permissions so that the simulator can't write to log
- * Please note that the ```Eigen``` library does not initialize ```VectorXd``` or ```MatrixXd``` objects with zeros upon creation.
 
 ## Call for IDE Profiles Pull Requests
 
@@ -129,6 +88,5 @@ and how to install it.
 Regardless of the IDE used, every submitted project must
 still be compilable with cmake and make.
 
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
+
 
