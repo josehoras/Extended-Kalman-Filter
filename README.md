@@ -3,9 +3,10 @@ Self-Driving Car Engineer Nanodegree Program
 
 In this project I use a Kalman Filter to estimate the state of a moving object of interest with noisy lidar and redar measurements. To measure the accuracy of the positions and velocity predicted by the Kalman Filter, RMSE values between predictions and the ground truth included in the data is displayed. Final RMSE values are lower than the tolerance outlined in the [project rubric](https://review.udacity.com/#!/rubrics/748/view).
 
-<div class="post_img">
-<img src="./final_screenshot.png" width="40%" height="40%" /> 
-</div>
+<figure>
+	<img src="./final_screenshot.png" width="40%" height="40%" />
+	<figcaption>RMSE values for [x, y, vx, vy] < [0.11, 0.11, 0.52, 0.52]</figcaption>
+</figure>
 
 ## Installation and Build
 
