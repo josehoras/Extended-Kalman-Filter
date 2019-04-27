@@ -8,6 +8,16 @@ In this project I use a Kalman Filter to estimate the state of a moving object o
 	<figcaption>RMSE values for [x, y, vx, vy] < [0.11, 0.11, 0.52, 0.52]</figcaption>
 </figure>
 
+## Code description
+
+A starter code is given by the Udacity project contained in `/src`. For the Kalman Filter to be fully implemented the following files where completed:
+
+- `tools.cpp`: funtions to calculate root mean squared error (RMSE) and the Jacobian matrix
+- `FusionEKF.cpp`: initializes the Kalman Filter on first data point, prepare the Q and F matrices, calls the prediction step, and depending on the data source calls the radar or lidar update functions
+- `kalman_filter.cpp`: contains the Predict(), Update(), and UpdateEKF() functions
+
+
+
 ## Installation and Build
 
 This project involves the Term 2 Simulator which can be downloaded [here](https://github.com/udacity/self-driving-car-sim/releases).
