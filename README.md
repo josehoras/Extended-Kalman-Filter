@@ -19,16 +19,23 @@ A starter code is given by the Udacity project contained in `/src`. For the Kalm
 These three `.cpp` files provide functions for the classes defined in the corresponding `.h` files. Thus for using the functions defined in `tools.cpp` we need to instantiate the class Tools and access the methods Tools.CalculateRMSE() and Tools.CalculateJacobian(). In the same way, on the class declaration for FusionEKF, the object "KalmanFilter ekf_" is instantiated. This object contains the needed variables and matrices of the Kalman Filter that are used to calculate the position and velocity in its Predict(), Update(), and UpdateEKF() functions.
 
 On the constructor function `FusionEKF::FusionEKF()` we initialize the Kalman Filter variables:
-- 	x - state vector
-- 	P - uncertainty covariance matrix
-- 	F - state transition matrix
-- 	Q - process noise
-- 	H - measurement function
-- 	R - measurement noise
+- x - state vector
+- P - uncertainty covariance matrix
+- F - state transition matrix
+- Q - process noise
+- H - measurement function
+- R - measurement noise
 	
 From `main.cpp` the function `fusionEKF.ProcessMeasurement(meas_package);` is called for every new radar or lidar measurement. On the first call (flag "is_initialized_" is false) the state vector is initialized with the position extracted from the measurement data. The data source is taken into account, converting from polar coordinates in the case of radar measurement. The velocity is assumed zero, as there is still not enough data. The current timestamp is as well updated. After this initialization the function returns to `main.cpp`.
 
-On subsequent calls, 
+On subsequent calls we follow the Kalman loop of prediction and measurement update.
+
+- Prediction: this step calculates what position and velocity is our object predicted to have, assuming constant velocity, and including our uncertainty about possible acceleration components into the process noise matrix Q. Before calling`ekf_.Predict()` the state transition matrix F and the process noise matrix Q are updated to take into account the time difference since the last measurement.
+
+		x_ = F_ * x_;
+		P_ = F_ * P_ * Ft + Q_;
+	
+- Measurement update: 
 
 
 ## Installation and Build
