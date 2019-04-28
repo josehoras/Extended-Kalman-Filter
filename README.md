@@ -30,7 +30,7 @@ From `main.cpp` the function `fusionEKF.ProcessMeasurement(meas_package);` is ca
 
 On subsequent calls we follow the Kalman loop of prediction and measurement update.
 
-- Prediction: this step calculates what position and velocity is our object predicted to have, assuming constant velocity, and including our uncertainty about possible acceleration components into the process noise matrix Q. Before calling`ekf_.Predict()` the state transition matrix F and the process noise matrix Q are updated to take into account the time difference since the last measurement. Following the Kalman Filter equations the state is updated as:
+- Prediction: this step calculates what position and velocity is our object predicted to have, assuming constant velocity, and including our uncertainty about possible acceleration components into the process noise matrix Q. Before calling `ekf_.Predict()` the state transition matrix F and the process noise matrix Q are updated to take into account the time difference since the last measurement. Following the Kalman Filter equations the state is updated as:
 
 		x = F * x
 		P = F * P * F.transpose + Q
@@ -52,6 +52,8 @@ On subsequent calls we follow the Kalman loop of prediction and measurement upda
 		//new estimate
 		x = x + (K * y)
 		P = (I - K * H) * P
+
+Finally, `main.cpp` will call our function Tools.CalculateRMSE() to evaluate root mean squared error (RMSE) and so measure the prediction accuracy of our Kalman Filter.
 
 ## Installation and Build
 
