@@ -15,7 +15,10 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
   /**
    * TODO: Calculate the RMSE here.
    */
-//
+  //this check was done to prove that estimations are not resetted when restarting in the simulator
+  //leading to higher values than the tolerance if the same simulation is repeated several times
+  //cout << estimations.size() << std::endl;
+
   VectorXd rmse(4);
   rmse << 0,0,0,0;
 

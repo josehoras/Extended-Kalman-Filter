@@ -16,6 +16,19 @@ A starter code is given by the Udacity project contained in `/src`. For the Kalm
 - `FusionEKF.cpp`: initializes the Kalman Filter on first data point, prepare the Q and F matrices, calls the prediction step, and depending on the data source calls the radar or lidar update functions
 - `kalman_filter.cpp`: contains the Predict(), Update(), and UpdateEKF() functions
 
+These three `.cpp` files provide functions for the classes defined in the corresponding `.h` files. Thus for using the functions defined in `tools.cpp` we need to instantiate the class Tools and access the methods Tools.CalculateRMSE() and Tools.CalculateJacobian(). In the same way, on the class declaration for FusionEKF, the object "KalmanFilter ekf_" is instantiated. This object contains the needed variables and matrices of the Kalman Filter that are used to calculate the position and velocity in its Predict(), Update(), and UpdateEKF() functions.
+
+On the constructor function `FusionEKF::FusionEKF()` we initialize the Kalman Filter variables:
+	x - state vector
+	P - uncertainty covariance matrix
+	F - state transition matrix
+	Q - process noise
+	H - measurement function
+	R - measurement noise
+	
+From `main.cpp` the function `fusionEKF.ProcessMeasurement(meas_package);` is called for every new radar or lidar measurement. On the first call (flag "is_initialized_" is false) the state vector is initialized with the position extracted from the measurement data. The data source is taken into account, converting from polar coordinates in the case of radar measurement. The velocity is assumed zero, as there is still not enough data. The current timestamp is as well updated. After this initialization the function returns to `main.cpp`.
+
+On subsequent calls, 
 
 
 ## Installation and Build
@@ -31,7 +44,7 @@ Once the install for uWebSocketIO is complete, the main program can be built and
    * On windows, you may need to run: `cmake .. -G "Unix Makefiles" && make`
 - Run it: `./ExtendedKF `
 
-Refer to the Udacity project repository for more detail intalation instructions.
+Refer to the [Udacity project repository](https://github.com/udacity/CarND-Extended-Kalman-Filter-Project) for more detail intalation instructions.
 
 ## Other Important Dependencies
 
