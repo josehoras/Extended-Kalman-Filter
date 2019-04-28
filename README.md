@@ -44,7 +44,7 @@ On subsequent calls we follow the Kalman loop of prediction and measurement upda
 		x = x + (K * y)
 		P = (I - K * H) * P
 
-If the data is coming from Radar, the measurement function is the Jacobian matrix that we calculate in `tools.cpp`. The radar measurement noise is previously defined as well. We pass these matrix to the update function for an Extended Kalman Filter `ekf_.UpdateEKF()`. The Extended Kalman Filter equations use the Jacobian Hj, and the h(x) funtion to calculate the error y:
+	If the data is coming from Radar, the measurement function is the Jacobian matrix that we calculate in `tools.cpp`. The radar measurement noise is previously defined as well. We pass these matrix to the update function for an Extended Kalman Filter `ekf_.UpdateEKF()`. The Extended Kalman Filter equations use the Jacobian Hj, and the h(x) funtion to calculate the error y:
 
 		y = z - h(x)					(Error)
 		S = Hj * P * Hj.transpose + R		(Innovation covariance)
