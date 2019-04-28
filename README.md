@@ -30,13 +30,28 @@ From `main.cpp` the function `fusionEKF.ProcessMeasurement(meas_package);` is ca
 
 On subsequent calls we follow the Kalman loop of prediction and measurement update.
 
-- Prediction: this step calculates what position and velocity is our object predicted to have, assuming constant velocity, and including our uncertainty about possible acceleration components into the process noise matrix Q. Before calling`ekf_.Predict()` the state transition matrix F and the process noise matrix Q are updated to take into account the time difference since the last measurement.
+- Prediction: this step calculates what position and velocity is our object predicted to have, assuming constant velocity, and including our uncertainty about possible acceleration components into the process noise matrix Q. Before calling`ekf_.Predict()` the state transition matrix F and the process noise matrix Q are updated to take into account the time difference since the last measurement. Following the Kalman Filter equations the state is updated as:
 
-		x_ = F_ * x_;
-		P_ = F_ * P_ * Ft + Q_;
+		x = F * x
+		P = F * P * F.transpose + Q
 	
-- Measurement update: 
+- Measurement update: if the data is coming from Lidar, the measurement function and the measurement noise previously defined are passed to the update step. The Kalman equations are:
 
+		y = z - H * x					(Error)
+		S = H * P * H.transpose + R		(Innovation covariance)
+		K = P * H.transpose * S.inverse	(Kalman gain)
+		//new estimate
+		x = x + (K * y)
+		P = (I - K * H) * P
+
+If the data is coming from Radar, the measurement function is the Jacobian matrix that we calculate in `tools.cpp`. The radar measurement noise is previously defined as well. We pass these matrix to the update function for an Extended Kalman Filter `ekf_.UpdateEKF()`. The Extended Kalman Filter equations use the Jacobian Hj, and the h(x) funtion to calculate the error y:
+
+		y = z - h(x)					(Error)
+		S = Hj * P * Hj.transpose + R		(Innovation covariance)
+		K = P * Hj.transpose * S.inverse	(Kalman gain)
+		//new estimate
+		x = x + (K * y)
+		P = (I - K * H) * P
 
 ## Installation and Build
 
